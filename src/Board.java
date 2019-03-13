@@ -14,26 +14,56 @@ public class Board {
       }
     }
 
-    public void diagonal(String player,int place){
+    public void diagonal(String player){
         boolean a=false;
-        int p=place;
-        if(){
-
-        }return a;
+        int counter=0;
+        for(int n=0;n<=8;n++){
+            if(Board[n][n]=player){
+                counter++;
+            }if(counter>=4){
+                System.out.println("Player "+player+" wins!");
+                break;
+            }
+        }for(int n=0;n<=8;n++){
+            if(Board[n][8-n]=player){
+                counter++;
+            }if(counter>=4){
+                System.out.println("Player "+player+" wins!");
+                a=true;
+                break;
+            }
+        }
     }
-    public void upDown(String player,int place){
-        boolean b=false;
-        int p=place;
-        if(){
-
-        }return b;
+    public void leftRight(String player){
+        boolean a=false;
+        int counter=0;
+        for(int h=0;h<=height;h++){
+            for(int w=0;w<=width;w++){
+                if(Board[w][h]=player){
+                    counter++;
+                }if(counter>=4){
+                    System.out.println("Player "+player+" wins!");
+                    a=true;
+                    break;
+                }
+            }
+        }
     }
-    public void leftgRight(String player,int place){
-        boolean c=false;
-        int p=place;
-        if(){
-
-        }return c;
+    public void upDown(String player) {
+        boolean a=false;
+        int counter=0;
+        for (int w=0;w<=width;w++) {
+            for (int h=0;h<=height;h++) {
+                if (Board[w][h]=player) {
+                    counter++;
+                }
+                if (counter>=4) {
+                    System.out.println("Player "+player+" wins!");
+                    a=true;
+                    break;
+                }
+            }
+        }
     }
 
     Scanner sc = new Scanner(System.in);
@@ -47,18 +77,40 @@ public class Board {
             Board[bottomrow][col]=="o";
         }if(Board[bottomrow][col]=="o"||Board[bottomrow][col]=="x"){
             Board[bottomrow+1][col]=="o";
-        }if(diagonal("x",bottomrow)==true||upDown("x",bottomrow)==true||leftRight("x",bottomrow)==true){
-            System.out.println("Yay player x has won!");
-            endGame;
+        }
+        counter++;
+        if(counter==height){
+            System.out.println("That column is full");
+            break;
+        }if(diagonal("o")==true||upDown("o")==true||leftRight("o")==true){
+            System.out.println("Yay player o has won!");
+            endGame();
         }
 
     }
     public void dropX(){
-
+        int counter=1;
+        System.out.println("Player 2's Turn");
+        int col=sc.nextInt();
+        if(col>width){
+            System.out.println("That is not a valid column");
+        }if(Board[bottomrow][col]==" "){
+            Board[bottomrow][col]=="x";
+        }if(Board[bottomrow][col]=="o"||Board[bottomrow][col]=="x"){
+            Board[bottomrow+1][col]=="x";
+        }
+        counter++;
+        if(counter==height){
+            System.out.println("That column is full");
+            break;
+        }if(diagonal("x",bottomrow)==true||upDown("x",bottomrow)==true||leftRight("x",bottomrow)==true){
+            System.out.println("Yay player x has won!");
+            endGame();
+        }
     }
 
-    public void endGame{
-
+    public void endGame(){
+        //reset the board
     }
 }
 
