@@ -6,15 +6,15 @@ public class Board {
     int height=8;
     int bottomrow=-1;
     char[][] grid=new char[width][height];
-    public Board(){
-      for(int i=0;i<height;i++){
-          for(int a=0;a<width;a++){
+    Board(){
+        for(int i=0;i<height;i++){
+            for(int a=0;a<width;a++){
               grid[i][a]=' ';
-          }
-      }
+            }
+        }
     }
 
-    public void diagonal(String player){
+    void diagonal(String player){
         boolean a=false;
         int counter=0;
         for(int n=0;n<=8;n++){
@@ -34,7 +34,7 @@ public class Board {
             }
         }
     }
-    public void leftRight(String player){
+    void leftRight(String player){
         boolean a=false;
         int counter=0;
         for(int h=0;h<=height;h++){
@@ -49,7 +49,7 @@ public class Board {
             }
         }
     }
-    public void upDown(String player) {
+    void upDown(String player) {
         boolean a=false;
         int counter=0;
         for (int w=0;w<=width;w++) {
@@ -66,8 +66,8 @@ public class Board {
         }
     }
 
-    Scanner sc = new Scanner(System.in);
-    public void dropO(){
+    Scanner sc=new Scanner(System.in);
+    void dropO(){
         int counter=1;
         System.out.println("Player 1's Turn");
         int col=sc.nextInt();
@@ -81,14 +81,13 @@ public class Board {
         counter++;
         if(counter==height){
             System.out.println("That column is full");
-            break;
         }if(diagonal("o")==true||upDown("o")==true||leftRight("o")==true){
             System.out.println("Yay player o has won!");
             endGame();
         }
 
     }
-    public void dropX(){
+    void dropX(){
         int counter=1;
         System.out.println("Player 2's Turn");
         int col=sc.nextInt();
@@ -102,23 +101,25 @@ public class Board {
         counter++;
         if(counter==height){
             System.out.println("That column is full");
-            break;
         }if(diagonal("x",bottomrow)==true||upDown("x",bottomrow)==true||leftRight("x",bottomrow)==true){
             System.out.println("Yay player x has won!");
             endGame();
         }
     }
 
-    public void endGame(){
-        //reset the board
+    void endGame(){
+        //reset the board:
+        //board=clear
+        //players=not won
+        //no outcome
+        //no messages
+        //refresh?
     }
 }
-
 
 //choose column
 //drop:
 //is column full?
 //next on top
 //connect 4?
-
-
+//next turn
