@@ -15,6 +15,7 @@ public class Board {
         }
     }
 
+
     void play(int col){
         while(game==true){
             PrintBoard();
