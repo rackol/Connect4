@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Board {
     int width=8;
     int height=8;
-    int bottomrow=-1;
+    int[]full={0,0,0,0,0,0,0,0};
     String[][] grid = new String[width][height];
     boolean game=true;
 
@@ -12,17 +12,6 @@ public class Board {
             for(int h=0;h<height;h++){
                 grid[h][w]=" .";
             }
-        }
-    }
-
-
-    void play(int col){
-        while(game==true){
-            PrintBoard();
-            dropX(col);
-            PrintBoard();
-            dropO(col);
-            PrintBoard();
         }
     }
 
@@ -93,50 +82,54 @@ public class Board {
 
 
     void dropO(int col){
+        int bottomrow=0;
         int counter=1;
-        System.out.println("Player 1's Turn");
         if(col>width){
             System.out.println("That is not a valid column");
-        }if(grid[bottomrow][col]==" ."){
-            grid[bottomrow][col]=" o";
-        }if(grid[bottomrow][col]==" o"||grid[bottomrow][col]==" x"){
-            grid[bottomrow+1][col]=" o";
+        }if(full[col+1]!=0){
+            System.out.println("That column is full, please choose another one");
+            //int col=sc.nextInt();
+        }for(int i=0;i<height;i++){
+            if(grid[bottomrow][col]==" ."){
+                grid[bottomrow][col] = " o";
+                break;
+            }else if (grid[bottomrow][col]==" o"||grid[bottomrow][col]==" x"){
+                bottomrow++;
+                if(i==8){
+                    full[col+1]=col;
+                }
+            }
         }
-        counter++;
-        if(counter==height){
-            System.out.println("That column is full");
-        }if(diagonal("o")==true||upDown("o")==true||leftRight("o")==true){
+        if(diagonal("o")==true||upDown("o")==true||leftRight("o")==true){
             System.out.println("Yay player o has won!");
             boolean game=false;
         }
-
+        System.out.println("Player 1's Turn");
     }
     void dropX(int col){
+        int bottomrow=0;
         int counter=1;
-        System.out.println("Player 2's Turn");
         if(col>width){
             System.out.println("That is not a valid column");
-        }if(grid[bottomrow][col]==" ."){
-            grid[bottomrow][col]=" x";
-        }if(grid[bottomrow][col]==" o"||grid[bottomrow][col]==" x"){
-            grid[bottomrow+1][col]=" x";
+        }if(full[col+1]!=0){
+            System.out.println("That column is full, please choose another one");
+            //int col=sc.nextInt();
+        }for(int i=0;i<height;i++){
+            if(grid[bottomrow][col]==" ."){
+                grid[bottomrow][col] = " x";
+                break;
+            }else if (grid[bottomrow][col]==" o"||grid[bottomrow][col]==" x"){
+                bottomrow++;
+                if(i==8){
+                    full[col+1]=col;
+                }
+            }
         }
-        counter++;
-        if(counter==height){
-            System.out.println("That column is full");
-        }if(diagonal("x")==true||upDown("x")==true||leftRight("x")==true){
+        if(diagonal("x")==true||upDown("x")==true||leftRight("x")==true){
             System.out.println("Yay player x has won!");
             game=false;
         }
-    }
-
-    void endGame(){
-        //reset the grid
-        //grid=clear
-        //players=not won
-        //no outcome
-        //no messages
-        //refresh?
+        System.out.println("Player 2's Turn");
     }
 }
 
