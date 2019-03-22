@@ -5,12 +5,19 @@ public class Game{
         System.out.println("Choose a column to play. Column:1-8");
         Board b=new Board();
         int col=sc.nextInt();
-        b.PrintBoard();
-        while(b.game=false){
-            b.dropX(col);
-            b.PrintBoard();
-            b.dropO(col);
-            b.PrintBoard();
+        while(b.game==true){
+            if(b.game==true){
+                b.dropX(col);
+                b.PrintBoard();
+                System.out.println("Player 1's Turn");
+            }
+            if (b.game==true){
+                b.dropO(col);
+                b.PrintBoard();
+                System.out.println("Player 2's Turn");
+            }
         }
+
     }
+
 }
