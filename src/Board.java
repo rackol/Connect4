@@ -35,7 +35,6 @@ public class Board {
                 }if(counter>=4){
                     System.out.println("Player "+player+" wins!");
                     a=true;
-                    break;
                 }
             }
         }
@@ -52,7 +51,6 @@ public class Board {
                 if (counter>=4) {
                     System.out.println("Player "+player+" wins!");
                     a=true;
-                    break;
                 }
             }
         }
@@ -81,10 +79,10 @@ public class Board {
                     }
                 }
             }
-            if (upDown("o") == true || leftRight("o") == true) {
-                System.out.println("Yay player o has won!");
-                boolean game = false;
-            }
+            //if (upDown("o") == true || leftRight("o") == true) {
+                //System.out.println("Yay player o has won!");
+                //boolean game = false;
+            //}
         }
     }
     void dropX(int col) {
@@ -109,10 +107,10 @@ public class Board {
                     }
                 }
             }
-            if (upDown("x") == true || leftRight("x") == true) {
-                System.out.println("Yay player x has won!");
-                game = false;
-            }
+            //if (upDown("x") == true || leftRight("x") == true) {
+                //System.out.println("Yay player x has won!");
+               // game = false;
+            //}
 
         }
     }
