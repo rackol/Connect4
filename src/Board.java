@@ -4,10 +4,10 @@ public class Board {
     int width=8;
     int height=8;
     int[]full={0,0,0,0,0,0,0,0};
-    String[][] grid = new String[width][height];
+    String[][]grid=new String[width][height];
     boolean game=true;
 
-    public Board() {
+    public Board(){
         for(int w=0;w<width;w++){
             for(int h=0;h<height;h++){
                 grid[h][w]=" .";
@@ -32,8 +32,7 @@ public class Board {
             for(int w=0;w<8;w++){
                 if(grid[w][h].equals(player)){
                     counter++;
-                }if(counter>=4){
-                    System.out.println("Player "+player+" wins!");
+                }if(counter==4){
                     a=true;
                 }
             }
@@ -43,13 +42,12 @@ public class Board {
     boolean upDown(String player) {
         boolean a=false;
         int counter=0;
-        for (int w=0;w<=width;w++) {
-            for (int h=0;h<=height;h++) {
+        for (int w=0;w<=8;w++) {
+            for (int h=0;h<=8;h++) {
                 if (grid[w][h].equals(player)) {
                     counter++;
                 }
                 if (counter>=4) {
-                    System.out.println("Player "+player+" wins!");
                     a=true;
                 }
             }
@@ -57,61 +55,58 @@ public class Board {
         return a;
     }
 
-
-    void dropO(int col) {
-        int bottomrow = 0;
-        int counter = 1;
-        if (col > width) {
+    void dropO(int col){
+        int bottomrow=0;
+        int counter=1;
+        if (col>width){
             System.out.println("That is not a valid column");
         }
-        if (full[col+1] != 0) {
+        if (full[col-1]!=0){
             System.out.println("That column is full, please choose another one");
             //int col=sc.nextInt();
-        } else {
-            for (int i = 0; i < height; i++) {
-                if (grid[bottomrow][col] == " .") {
-                    grid[bottomrow][col] = " o";
+        } else{
+            for (int i=0;i<height;i++){
+                if (grid[bottomrow][col]==" ."){
+                    grid[bottomrow][col]=" o";
                     break;
-                } else if (grid[bottomrow][col] == " o" || grid[bottomrow][col] == " x") {
+                }else if(grid[bottomrow][col] == " o" || grid[bottomrow][col] == " x"){
                     bottomrow++;
-                    if (i == 8) {
-                        full[col + 1] = col;
+                    if (i==8){
+                        full[col-1]=col;
                     }
                 }
             }
-            //if (upDown("o") == true || leftRight("o") == true) {
-                //System.out.println("Yay player o has won!");
-                //boolean game = false;
-            //}
+            if (upDown("o") == true || leftRight("o") == true) {
+                System.out.println("Yay player o has won!");
+                boolean game = false;
+            }
         }
     }
     void dropX(int col) {
-        int bottomrow = 0;
-        int counter = 1;
-        if (col > width) {
+        int bottomrow=0;
+        int counter=1;
+        if (col>width){
             System.out.println("That is not a valid column");
-            //int col=sc.nextInt();
-        } else {
-            if (full[col + 1] != 0) {
+        }else{
+            if (full[col+1]!= 0) {
                 System.out.println("That column is full, please choose another one");
-                //int col=sc.nextInt();
+
             }
             for (int i = 0; i < height; i++) {
-                if (grid[bottomrow][col] == " .") {
-                    grid[bottomrow][col] = " x";
+                if (grid[bottomrow][col]==" .") {
+                    grid[bottomrow][col]=" x";
                     break;
-                } else if (grid[bottomrow][col] == " o" || grid[bottomrow][col] == " x") {
+                } else if (grid[bottomrow][col]==" o"||grid[bottomrow][col]==" x") {
                     bottomrow++;
-                    if (i == 8) {
-                        full[col + 1] = col;
+                    if (i==8) {
+                        full[col+1]=col;
                     }
                 }
             }
-            //if (upDown("x") == true || leftRight("x") == true) {
-                //System.out.println("Yay player x has won!");
-               // game = false;
-            //}
-
+            if (upDown("x") == true || leftRight("x") == true) {
+                System.out.println("Yay player x has won!");
+                game = false;
+            }
         }
     }
 }
@@ -127,4 +122,5 @@ public class Board {
 //reset
 //check to win functions
 //finish sequece
-//cats game
+//cats game?
+//

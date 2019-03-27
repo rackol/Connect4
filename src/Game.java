@@ -17,8 +17,6 @@ public class Game{
                 b.PrintBoard();
                 System.out.println("Player 1's Turn");
             }
-       // }
-
+        //}
     }
-
 }
