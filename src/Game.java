@@ -4,8 +4,8 @@ public class Game{
         Board b=new Board();
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a column to play. Column:1-8");
-        //while(b.game==true){
-            if(b.game==true){
+        while(b.game==true){
+           if(b.game==true){
                 int colX=sc.nextInt();
                 b.dropX(colX);
                 b.PrintBoard();
@@ -17,6 +17,6 @@ public class Game{
                 b.PrintBoard();
                 System.out.println("Player 1's Turn");
             }
-        //}
+        }
     }
 }

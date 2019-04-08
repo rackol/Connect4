@@ -6,6 +6,7 @@ public class Board {
     int[]full={0,0,0,0,0,0,0,0};
     String[][]grid=new String[width][height];
     boolean game=true;
+    Scanner sc = new Scanner(System.in);
 
     public Board(){
         for(int w=0;w<width;w++){
@@ -28,27 +29,42 @@ public class Board {
     boolean leftRight(String player){
         boolean a=false;
         int counter=0;
-        for(int h=0;h<8;h++){
-            for(int w=0;w<8;w++){
-                if(grid[w][h].equals(player)){
-                    counter++;
-                }if(counter==4){
-                    a=true;
+        for(int h=0;h<3;h++){
+            for(int w=0;w<3;w++){
+                if (grid[w][h].equals(player)){
+                    if (grid[w+1][h].equals(player)){
+                        if (grid[w+2][h].equals(player)){
+                            if (grid[w+3][h].equals(player)){
+                                counter++;
+                            }
+                        }
+                    }
                 }
+            }if(counter==4){
+                    a=true;
+                    break;
             }
         }
         return a;
     }
+
     boolean upDown(String player) {
         boolean a=false;
         int counter=0;
-        for (int w=0;w<=8;w++) {
-            for (int h=0;h<=8;h++) {
-                if (grid[w][h].equals(player)) {
-                    counter++;
+        for (int w=0;w<=3;w++) {
+            for (int h=0;h<=3;h++) {
+                if (grid[w][h].equals(player)){
+                    if (grid[w][h+1].equals(player)){
+                        if (grid[w][h+2].equals(player)){
+                            if (grid[w][h+3].equals(player)){
+                                counter++;
+                            }
+                        }
+                    }
                 }
-                if (counter>=4) {
+                if (counter==4) {
                     a=true;
+                    break;
                 }
             }
         }
@@ -60,10 +76,13 @@ public class Board {
         int counter=1;
         if (col>width){
             System.out.println("That is not a valid column");
+            int colO=sc.nextInt();
+            dropX(colO);
         }
         if (full[col-1]!=0){
             System.out.println("That column is full, please choose another one");
-            //int col=sc.nextInt();
+            int colO=sc.nextInt();
+            dropX(colO);
         } else{
             for (int i=0;i<height;i++){
                 if (grid[bottomrow][col]==" ."){
@@ -87,10 +106,13 @@ public class Board {
         int counter=1;
         if (col>width){
             System.out.println("That is not a valid column");
+            int colX=sc.nextInt();
+            dropX(colX);
         }else{
             if (full[col+1]!= 0) {
                 System.out.println("That column is full, please choose another one");
-
+                int colX=sc.nextInt();
+                dropX(colX);
             }
             for (int i = 0; i < height; i++) {
                 if (grid[bottomrow][col]==" .") {
