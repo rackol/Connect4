@@ -26,25 +26,6 @@ public class Board {
         System.out.println();
     }
 
-    boolean leftRight(String player){
-        boolean a=false;
-        for(int h=0;h<4;h++){
-            for(int w=0;w<4;w++){
-                if (grid[w][h].equals(player)){
-                    if (grid[w+1][h].equals(player)){
-                        if (grid[w+2][h].equals(player)){
-                            if (grid[w+3][h].equals(player)){
-                                a=true;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return a;
-    }
-
     boolean upDown(String player) {
         boolean a=false;
         for (int w=0;w<=4;w++) {
@@ -60,6 +41,40 @@ public class Board {
                     }
                 }
             }
+        }
+        return a;
+    }
+    boolean rightleft(String player) {
+        boolean a=false;
+        for (int h=0;h<=4;h++) {
+            for (int w=0;w<=4;w++) {
+                if (grid[w][h].equals(player)){
+                    if (grid[w+1][h].equals(player)){
+                        if (grid[w+2][h].equals(player)){
+                            if (grid[w+3][h].equals(player)){
+                                a=true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return a;
+    }
+
+    boolean catsGame(){
+        boolean a=false;
+        int counter=0;
+        for (int h=0;h<=7;h++) {
+            for (int w = 0; w <= 7; w++) {
+                if(grid[w][h].equals(" x")||grid[w][h].equals(" o")){
+                    counter++;
+                }
+            }
+        }
+        if(counter==64){
+            a=true;
         }
         return a;
     }
@@ -87,7 +102,7 @@ public class Board {
                     }
                 }
             }
-            if (upDown("o") == true || leftRight("o") == true) {
+            if (upDown("o") == true || rightleft("o") == true) {
                 game = false;
             }
         }
@@ -111,7 +126,7 @@ public class Board {
                     bottomrow++;
                 }
             }
-            if (upDown("x") == true || leftRight("x") == true) {
+            if (upDown("x") == true || rightleft("x") == true) {
                 game = false;
             }
         }
