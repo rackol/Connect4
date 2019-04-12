@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Board {
     int width=8;
     int height=8;
-    int[]full={0,0,0,0,0,0,0,0};
     String[][]grid=new String[width][height];
     boolean game=true;
     Scanner sc = new Scanner(System.in);
@@ -17,8 +16,8 @@ public class Board {
     }
 
     void PrintBoard(){
-        for(int w=0;width>w;w++){
-            for(int h=0;height>h;h++){
+        for(int w=7;w>=0;w--){
+            for(int h=0;h<=7;h++){
                 System.out.print(grid[w][h]);
             }
             System.out.println();
@@ -28,12 +27,12 @@ public class Board {
 
     boolean upDown(String player) {
         boolean a=false;
-        for (int w=0;w<=4;w++) {
+        for (int w=0;w<=7;w++) {
             for (int h=0;h<=4;h++) {
-                if (grid[w][h].equals(player)){
-                    if (grid[w][h+1].equals(player)){
-                        if (grid[w][h+2].equals(player)){
-                            if (grid[w+3][h].equals(player)){
+                if (grid[h][w].equals(player)){
+                    if (grid[h+1][w].equals(player)){
+                        if (grid[h+2][w].equals(player)){
+                            if (grid[h+3][w].equals(player)){
                                 a=true;
                                 break;
                             }
@@ -46,12 +45,12 @@ public class Board {
     }
     boolean rightleft(String player) {
         boolean a=false;
-        for (int h=0;h<=4;h++) {
+        for (int h=0;h<=7;h++) {
             for (int w=0;w<=4;w++) {
-                if (grid[w][h].equals(player)){
-                    if (grid[w+1][h].equals(player)){
-                        if (grid[w+2][h].equals(player)){
-                            if (grid[w+3][h].equals(player)){
+                if (grid[h][w].equals(player)){
+                    if (grid[h][w+1].equals(player)){
+                        if (grid[h][w+2].equals(player)){
+                            if (grid[h][w+3].equals(player)){
                                 a=true;
                                 break;
                             }
@@ -97,13 +96,13 @@ public class Board {
                     break;
                 }else if(grid[bottomrow][col] == " o" || grid[bottomrow][col] == " x"){
                     bottomrow++;
-                    if (i==8){
-                        full[col-1]=col;
-                    }
                 }
             }
-            if (upDown("o") == true || rightleft("o") == true) {
+            if (upDown(" o") == true || rightleft(" o") == true) {
                 game = false;
+            }
+            if (catsGame()==true){
+                game=false;
             }
         }
     }
@@ -126,8 +125,11 @@ public class Board {
                     bottomrow++;
                 }
             }
-            if (upDown("x") == true || rightleft("x") == true) {
+            if (upDown(" x") == true || rightleft(" x") == true) {
                 game = false;
+            }
+            if (catsGame()==true){
+                game=false;
             }
         }
     }

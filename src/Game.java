@@ -11,7 +11,7 @@ public class Game{
                 int colX=sc.nextInt();
                 b.dropX(colX);
                 b.PrintBoard();
-               if (b.catsGame()==true && b.game==true){
+               if (b.catsGame()==true){
                    System.out.println("Cats Game!");
                }if (b.game==true&&b.catsGame()!=true){
                    System.out.println("Player o's Turn");
@@ -25,7 +25,7 @@ public class Game{
                 int colO=sc.nextInt();
                 b.dropO(colO);
                 b.PrintBoard();
-                if (b.catsGame()==true && b.game==true){
+                if (b.catsGame()==true){
                     System.out.println("Cats Game!");
                 }if (b.game==true&&b.catsGame()!=true){
                     System.out.println("Player x's Turn");
